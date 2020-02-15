@@ -1,0 +1,13 @@
+type User {
+  id: ID! @id
+  name: String!
+  username: String! @unique
+  password: String!
+  role: Role! @relation(name: "UserRole", onDelete: SET_NULL)
+}
+
+type Role {
+  id: ID! @id
+  name: String!
+  users: [User!]! @relation(name: "UserRole", onDelete: CASCADE)
+}
