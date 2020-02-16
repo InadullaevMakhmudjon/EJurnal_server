@@ -18,7 +18,7 @@ const http = createServer(app, cors());
 
 server.applyMiddleware({ app });
 
-app.get('*', (_, res) => res.sendFile(join(__dirname, '../jurnal_client/build/index.html')));
+app.get('*', (_, res) => res.sendFile(join(__dirname, '../EJurnal_client/build/index.html')));
 
 http.listen({ port }, () => {
   // eslint-disable-next-line no-console
