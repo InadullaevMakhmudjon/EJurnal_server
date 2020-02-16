@@ -12,7 +12,7 @@ const port = process.env.PORT || 3000;
 const app = express();
 app.disable('x-powered-by');
 
-app.use(express.static(join(__dirname, '../jurnal_client/build')));
+app.use(express.static(join(__dirname, '../EJurnal_client/build')));
 
 const http = createServer(app, cors());
 
