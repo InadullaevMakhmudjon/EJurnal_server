@@ -1,14 +1,14 @@
 module.exports = [
   {
-    id: 1,
+    id: '001',
     name: 'admin',
   },
   {
-    id: 2,
+    id: '002',
     name: 'author',
   },
   {
-    id: 3,
+    id: '003',
     name: 'editor',
   },
 ];

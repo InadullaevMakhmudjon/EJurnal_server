@@ -1,4 +1,4 @@
-const userSeed = require('./users');
+const users = require('./users');
 const roles = require('./roles');
 const { prisma } = require('../generated/prisma-client');
 
@@ -13,7 +13,7 @@ function seed(data, seeder) {
 function main() {
   execute([
     seed(roles, prisma.createRole),
-    userSeed(prisma.createUser),
+    seed(users, prisma.createUser),
   ])
     .then(() => console.log('Done'))
     .catch((error) => console.log(error));
