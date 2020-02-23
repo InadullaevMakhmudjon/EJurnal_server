@@ -15,6 +15,8 @@ type BatchPayload {
   count: Long!
 }
 
+scalar DateTime
+
 scalar Long
 
 type Mutation {
@@ -195,9 +197,13 @@ type Subscription {
 
 type User {
   id: ID!
-  name: String!
-  username: String!
+  firstName: String!
+  secondName: String!
+  userName: String!
   password: String!
+  blocked: Boolean!
+  createdAt: DateTime!
+  lastEntered: DateTime
   role: Role!
 }
 
@@ -209,9 +215,12 @@ type UserConnection {
 
 input UserCreateInput {
   id: ID
-  name: String!
-  username: String!
+  firstName: String!
+  secondName: String!
+  userName: String!
   password: String!
+  blocked: Boolean
+  lastEntered: DateTime
   role: RoleCreateOneWithoutUsersInput!
 }
 
@@ -222,9 +231,12 @@ input UserCreateManyWithoutRoleInput {
 
 input UserCreateWithoutRoleInput {
   id: ID
-  name: String!
-  username: String!
+  firstName: String!
+  secondName: String!
+  userName: String!
   password: String!
+  blocked: Boolean
+  lastEntered: DateTime
 }
 
 type UserEdge {
@@ -235,19 +247,31 @@ type UserEdge {
 enum UserOrderByInput {
   id_ASC
   id_DESC
-  name_ASC
-  name_DESC
-  username_ASC
-  username_DESC
+  firstName_ASC
+  firstName_DESC
+  secondName_ASC
+  secondName_DESC
+  userName_ASC
+  userName_DESC
   password_ASC
   password_DESC
+  blocked_ASC
+  blocked_DESC
+  createdAt_ASC
+  createdAt_DESC
+  lastEntered_ASC
+  lastEntered_DESC
 }
 
 type UserPreviousValues {
   id: ID!
-  name: String!
-  username: String!
+  firstName: String!
+  secondName: String!
+  userName: String!
   password: String!
+  blocked: Boolean!
+  createdAt: DateTime!
+  lastEntered: DateTime
 }
 
 input UserScalarWhereInput {
@@ -265,34 +289,48 @@ input UserScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  name: String
-  name_not: String
-  name_in: [String!]
-  name_not_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
-  username: String
-  username_not: String
-  username_in: [String!]
-  username_not_in: [String!]
-  username_lt: String
-  username_lte: String
-  username_gt: String
-  username_gte: String
-  username_contains: String
-  username_not_contains: String
-  username_starts_with: String
-  username_not_starts_with: String
-  username_ends_with: String
-  username_not_ends_with: String
+  firstName: String
+  firstName_not: String
+  firstName_in: [String!]
+  firstName_not_in: [String!]
+  firstName_lt: String
+  firstName_lte: String
+  firstName_gt: String
+  firstName_gte: String
+  firstName_contains: String
+  firstName_not_contains: String
+  firstName_starts_with: String
+  firstName_not_starts_with: String
+  firstName_ends_with: String
+  firstName_not_ends_with: String
+  secondName: String
+  secondName_not: String
+  secondName_in: [String!]
+  secondName_not_in: [String!]
+  secondName_lt: String
+  secondName_lte: String
+  secondName_gt: String
+  secondName_gte: String
+  secondName_contains: String
+  secondName_not_contains: String
+  secondName_starts_with: String
+  secondName_not_starts_with: String
+  secondName_ends_with: String
+  secondName_not_ends_with: String
+  userName: String
+  userName_not: String
+  userName_in: [String!]
+  userName_not_in: [String!]
+  userName_lt: String
+  userName_lte: String
+  userName_gt: String
+  userName_gte: String
+  userName_contains: String
+  userName_not_contains: String
+  userName_starts_with: String
+  userName_not_starts_with: String
+  userName_ends_with: String
+  userName_not_ends_with: String
   password: String
   password_not: String
   password_in: [String!]
@@ -307,6 +345,24 @@ input UserScalarWhereInput {
   password_not_starts_with: String
   password_ends_with: String
   password_not_ends_with: String
+  blocked: Boolean
+  blocked_not: Boolean
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  lastEntered: DateTime
+  lastEntered_not: DateTime
+  lastEntered_in: [DateTime!]
+  lastEntered_not_in: [DateTime!]
+  lastEntered_lt: DateTime
+  lastEntered_lte: DateTime
+  lastEntered_gt: DateTime
+  lastEntered_gte: DateTime
   AND: [UserScalarWhereInput!]
   OR: [UserScalarWhereInput!]
   NOT: [UserScalarWhereInput!]
@@ -331,22 +387,31 @@ input UserSubscriptionWhereInput {
 }
 
 input UserUpdateInput {
-  name: String
-  username: String
+  firstName: String
+  secondName: String
+  userName: String
   password: String
+  blocked: Boolean
+  lastEntered: DateTime
   role: RoleUpdateOneRequiredWithoutUsersInput
 }
 
 input UserUpdateManyDataInput {
-  name: String
-  username: String
+  firstName: String
+  secondName: String
+  userName: String
   password: String
+  blocked: Boolean
+  lastEntered: DateTime
 }
 
 input UserUpdateManyMutationInput {
-  name: String
-  username: String
+  firstName: String
+  secondName: String
+  userName: String
   password: String
+  blocked: Boolean
+  lastEntered: DateTime
 }
 
 input UserUpdateManyWithoutRoleInput {
@@ -367,9 +432,12 @@ input UserUpdateManyWithWhereNestedInput {
 }
 
 input UserUpdateWithoutRoleDataInput {
-  name: String
-  username: String
+  firstName: String
+  secondName: String
+  userName: String
   password: String
+  blocked: Boolean
+  lastEntered: DateTime
 }
 
 input UserUpdateWithWhereUniqueWithoutRoleInput {
@@ -398,34 +466,48 @@ input UserWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  name: String
-  name_not: String
-  name_in: [String!]
-  name_not_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
-  username: String
-  username_not: String
-  username_in: [String!]
-  username_not_in: [String!]
-  username_lt: String
-  username_lte: String
-  username_gt: String
-  username_gte: String
-  username_contains: String
-  username_not_contains: String
-  username_starts_with: String
-  username_not_starts_with: String
-  username_ends_with: String
-  username_not_ends_with: String
+  firstName: String
+  firstName_not: String
+  firstName_in: [String!]
+  firstName_not_in: [String!]
+  firstName_lt: String
+  firstName_lte: String
+  firstName_gt: String
+  firstName_gte: String
+  firstName_contains: String
+  firstName_not_contains: String
+  firstName_starts_with: String
+  firstName_not_starts_with: String
+  firstName_ends_with: String
+  firstName_not_ends_with: String
+  secondName: String
+  secondName_not: String
+  secondName_in: [String!]
+  secondName_not_in: [String!]
+  secondName_lt: String
+  secondName_lte: String
+  secondName_gt: String
+  secondName_gte: String
+  secondName_contains: String
+  secondName_not_contains: String
+  secondName_starts_with: String
+  secondName_not_starts_with: String
+  secondName_ends_with: String
+  secondName_not_ends_with: String
+  userName: String
+  userName_not: String
+  userName_in: [String!]
+  userName_not_in: [String!]
+  userName_lt: String
+  userName_lte: String
+  userName_gt: String
+  userName_gte: String
+  userName_contains: String
+  userName_not_contains: String
+  userName_starts_with: String
+  userName_not_starts_with: String
+  userName_ends_with: String
+  userName_not_ends_with: String
   password: String
   password_not: String
   password_in: [String!]
@@ -440,6 +522,24 @@ input UserWhereInput {
   password_not_starts_with: String
   password_ends_with: String
   password_not_ends_with: String
+  blocked: Boolean
+  blocked_not: Boolean
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  lastEntered: DateTime
+  lastEntered_not: DateTime
+  lastEntered_in: [DateTime!]
+  lastEntered_not_in: [DateTime!]
+  lastEntered_lt: DateTime
+  lastEntered_lte: DateTime
+  lastEntered_gt: DateTime
+  lastEntered_gte: DateTime
   role: RoleWhereInput
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
@@ -448,7 +548,7 @@ input UserWhereInput {
 
 input UserWhereUniqueInput {
   id: ID
-  username: String
+  userName: String
 }
 `
       }
