@@ -2,34 +2,36 @@ const { hashSync } = require('bcryptjs');
 
 const users = [
   {
-    name: 'Admin',
-    username: 'admin',
+    firstName: 'Admin',
+    secondName: 'Admin',
+    userName: 'admin',
     password: hashSync('admin', 7),
-    roleId: '1',
+    roleId: '001',
   },
   {
-    name: 'Author',
-    username: 'author',
+    firstName: 'Author',
+    secondName: 'Author',
+    userName: 'author',
     password: hashSync('author', 7),
-    roleId: '2',
+    roleId: '002',
   },
   {
-    name: 'Editor',
-    username: 'editor',
+    firstName: 'Editor',
+    secondName: 'Editor',
+    userName: 'editor',
     password: hashSync('editor', 7),
-    roleId: '3',
+    roleId: '003',
   },
 ];
 
-module.exports = function (seeder) {
-  return users.map((user) => seeder({
-    name: user.name,
-    username: user.username,
-    password: user.password,
-    role: {
-      connect: {
-        id: user.roleId,
-      },
+module.exports = users.map((user) => ({
+  firstName: user.firstName,
+  secondName: user.secondName,
+  userName: user.userName,
+  password: user.password,
+  role: {
+    connect: {
+      id: user.roleId,
     },
-  }));
-};
+  },
+}));
