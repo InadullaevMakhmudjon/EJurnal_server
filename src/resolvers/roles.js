@@ -1,22 +1,12 @@
-const fragment = `
-fragment RoleWithUser on Role {
-  id
-  name
-  users {
-    id
-    name
-    username
-  }
-}
-`;
+import { FRAGMENT_ROLE } from '../fragments';
 
 export default {
   Query: {
     roles(parent, arg, { prisma }, info) {
-      return prisma.roles({}, info).$fragment(fragment);
+      return prisma.roles({}, info).$fragment(FRAGMENT_ROLE);
     },
     role(parent, { where }, { prisma }, info) {
-      return prisma.role(where, info).$fragment(fragment);
+      return prisma.role(where, info).$fragment(FRAGMENT_ROLE);
     },
   },
   Mutation: {
