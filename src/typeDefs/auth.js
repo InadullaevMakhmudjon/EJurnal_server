@@ -10,12 +10,12 @@ export default gql`
     }
     input InputAuthUserSignUpType{
         name: String!
-        username: String!
+        userName: String!
         password: String!
         roleId: ID!
     }
     input InputAuthUserSignInType{
-        username: String!
+        userName: String!
         password: String!
     }
     type LoginResponse {
