@@ -2,7 +2,7 @@ import { gql } from 'apollo-server-express';
 
 export default gql`
     extend type Query {
-        users: [User]!
+        users(roleId: String): [User]!
         user(where: WhereInputUserType!): User
     }
     extend type Mutation {
@@ -16,23 +16,31 @@ export default gql`
     }
 
     input InputUpdateUserType {
-        name: String
-        username: String
+        firstName: String
+        secondName: String
+        userName: String
         password: String
-        roleId: String
+        blocked: Boolean
+        role: String
     }
 
     input InputUserType {
-        name: String!
-        username: String!
+        firstName: String!
+        secondName: String!
+        userName: String!
         password: String!
-        roleId: String!
+        role: String!
     }
 
     type User {
         id: ID!
-        name: String!
-        username: String!
-        role: Role!                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+        firstName: String!
+        secondName: String!
+        userName: String!
+        password: String!
+        blocked: Boolean
+        createdAt: String!
+        lastEntered: String
+        role: Role!
     }
 `;
