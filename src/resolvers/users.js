@@ -1,47 +1,53 @@
 import { hashSync } from 'bcryptjs';
-
-const fragment = `
-fragment UserWithRole on User {
-    id
-    name
-    username
-    role {
-        id
-        name
-    }
-}
-`;
+import { FRAGMENT_USER } from '../fragments';
+import { ADMIN } from '../utils/roles';
 
 export default {
   Query: {
-    users(parent, arg, { prisma, auth }, info) {
-      auth();
-      return prisma.users({}, info).$fragment(fragment);
+    async users(parent, { roleId }, { prisma, auth, hasRole }, info) {
+      const userId = await auth();
+
+      if (await hasRole(userId, ADMIN)) {
+        const where = {
+          role: {
+            id: roleId,
+          },
+        };
+        return prisma.users({ where }, info).$fragment(FRAGMENT_USER);
+      }
+      return [];
     },
-    user(parent, { where }, { prisma, auth }, info) {
-      auth();
-      return prisma.user(where, info).$fragment(fragment);
+    async user(parent, { where }, { prisma, auth }, info) {
+      await auth();
+      return prisma.user(where, info).$fragment(FRAGMENT_USER);
     },
   },
   Mutation: {
-    createUser(parent, { data }, { prisma, auth }, info) {
-      auth();
+    async createUser(parent, { data }, { prisma, auth }, info) {
+      // It is open to register authors, but creating other role users is required authontication
+      // eslint-disable-next-line no-unused-vars
+      const userId = data.role === '002' ? null : await auth();
       const user = {
         ...data,
         password: hashSync(data.password, 7),
+        role: {
+          connect: {
+            id: data.role,
+          },
+        },
       };
-      return prisma.createUser(user, info);
+      return prisma.createUser(user, info).$fragment(FRAGMENT_USER);
     },
-    updateUser(parent, { data, where }, { prisma, auth }, info) {
-      auth();
+    async updateUser(parent, { data, where }, { prisma, auth }, info) {
+      await auth();
       const user = data.password ? {
         ...data,
         password: hashSync(data.password, 7),
       } : { ...data };
       return prisma.updateUser({ data: user, where }, info);
     },
-    deleteUser(parent, { where }, { prisma, auth }, info) {
-      auth();
+    async deleteUser(parent, { where }, { prisma, auth }, info) {
+      await auth();
       return prisma.deleteUser(where, info);
     },
   },
