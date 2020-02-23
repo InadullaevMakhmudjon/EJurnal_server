@@ -1,8 +1,12 @@
 type User {
   id: ID! @id
-  name: String!
-  username: String! @unique
+  firstName: String!
+  secondName: String!
+  userName: String! @unique
   password: String!
+  blocked: Boolean! @default(value: false)
+  createdAt: DateTime! @createdAt
+  lastEntered: DateTime
   role: Role! @relation(name: "UserRole", onDelete: SET_NULL)
 }
 
