@@ -12,12 +12,16 @@ const getUser = (token) => {
   }
 };
 
-export default ({ req, ...others }) => {
+export default ({ req, isBlocked, ...others }) => {
   const tokenWithBearer = req.headers.authorization || '';
   const token = tokenWithBearer.split(' ')[1];
-  const userId = getUser(token);
+  const { userId } = getUser(token) || {};
   return {
     ...others,
-    auth: () => { if (userId) return userId; throw new AuthenticationError('You must be logged in...'); },
+    auth: async () => {
+      if (await isBlocked(userId)) throw new AuthenticationError('You are blocked');
+      if (userId) return userId;
+      throw new AuthenticationError('You must be logged in...');
+    },
   };
 };
