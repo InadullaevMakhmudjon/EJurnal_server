@@ -17,6 +17,18 @@ export default {
       }
       return [];
     },
+    async editors(parent, { userName }, { prisma, auth }, info) {
+      await auth();
+      const where = {
+        AND: {
+          role: { id: '003' },
+        },
+      };
+      if (userName) {
+        where.AND.userName = userName;
+      }
+      return prisma.users({ where }, info).$fragment(FRAGMENT_USER);
+    },
     async user(parent, { where }, { prisma, auth }, info) {
       await auth();
       return prisma.user(where, info).$fragment(FRAGMENT_USER);
