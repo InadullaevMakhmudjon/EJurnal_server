@@ -18,6 +18,8 @@ const http = createServer(app, cors());
 
 server.applyMiddleware({ app });
 
+app.use('/files', express.static('src/files'));
+
 app.get('*', (_, res) => res.sendFile(join(__dirname, '../EJurnal_client/build/index.html')));
 
 http.listen({ port }, () => {
