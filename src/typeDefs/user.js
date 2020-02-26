@@ -3,6 +3,7 @@ import { gql } from 'apollo-server-express';
 export default gql`
     extend type Query {
         users(roleId: String): [User]!
+        editors(userName: String): [User]!
         user(where: WhereInputUserType!): User
     }
     extend type Mutation {
