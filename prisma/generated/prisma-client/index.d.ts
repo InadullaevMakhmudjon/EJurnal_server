@@ -162,59 +162,9 @@ export type RoleOrderByInput = "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC";
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export interface UserUpdateManyWithoutRoleInput {
-  create?: Maybe<UserCreateWithoutRoleInput[] | UserCreateWithoutRoleInput>;
-  delete?: Maybe<UserWhereUniqueInput[] | UserWhereUniqueInput>;
-  connect?: Maybe<UserWhereUniqueInput[] | UserWhereUniqueInput>;
-  set?: Maybe<UserWhereUniqueInput[] | UserWhereUniqueInput>;
-  disconnect?: Maybe<UserWhereUniqueInput[] | UserWhereUniqueInput>;
-  update?: Maybe<
-    | UserUpdateWithWhereUniqueWithoutRoleInput[]
-    | UserUpdateWithWhereUniqueWithoutRoleInput
-  >;
-  upsert?: Maybe<
-    | UserUpsertWithWhereUniqueWithoutRoleInput[]
-    | UserUpsertWithWhereUniqueWithoutRoleInput
-  >;
-  deleteMany?: Maybe<UserScalarWhereInput[] | UserScalarWhereInput>;
-  updateMany?: Maybe<
-    UserUpdateManyWithWhereNestedInput[] | UserUpdateManyWithWhereNestedInput
-  >;
-}
-
 export type RoleWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
-
-export interface RoleCreateOneWithoutUsersInput {
-  create?: Maybe<RoleCreateWithoutUsersInput>;
-  connect?: Maybe<RoleWhereUniqueInput>;
-}
-
-export interface UserUpdateManyWithWhereNestedInput {
-  where: UserScalarWhereInput;
-  data: UserUpdateManyDataInput;
-}
-
-export interface UserCreateInput {
-  id?: Maybe<ID_Input>;
-  firstName: String;
-  secondName: String;
-  userName: String;
-  password: String;
-  blocked?: Maybe<Boolean>;
-  lastEntered?: Maybe<DateTimeInput>;
-  role: RoleCreateOneWithoutUsersInput;
-}
-
-export interface UserUpdateWithoutRoleDataInput {
-  firstName?: Maybe<String>;
-  secondName?: Maybe<String>;
-  userName?: Maybe<String>;
-  password?: Maybe<String>;
-  blocked?: Maybe<Boolean>;
-  lastEntered?: Maybe<DateTimeInput>;
-}
 
 export interface UserWhereInput {
   id?: Maybe<ID_Input>;
@@ -311,60 +261,6 @@ export interface UserWhereInput {
   NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
 }
 
-export interface RoleSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<RoleWhereInput>;
-  AND?: Maybe<RoleSubscriptionWhereInput[] | RoleSubscriptionWhereInput>;
-  OR?: Maybe<RoleSubscriptionWhereInput[] | RoleSubscriptionWhereInput>;
-  NOT?: Maybe<RoleSubscriptionWhereInput[] | RoleSubscriptionWhereInput>;
-}
-
-export interface RoleCreateInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  users?: Maybe<UserCreateManyWithoutRoleInput>;
-}
-
-export interface RoleUpsertWithoutUsersInput {
-  update: RoleUpdateWithoutUsersDataInput;
-  create: RoleCreateWithoutUsersInput;
-}
-
-export interface UserCreateManyWithoutRoleInput {
-  create?: Maybe<UserCreateWithoutRoleInput[] | UserCreateWithoutRoleInput>;
-  connect?: Maybe<UserWhereUniqueInput[] | UserWhereUniqueInput>;
-}
-
-export interface RoleUpdateOneRequiredWithoutUsersInput {
-  create?: Maybe<RoleCreateWithoutUsersInput>;
-  update?: Maybe<RoleUpdateWithoutUsersDataInput>;
-  upsert?: Maybe<RoleUpsertWithoutUsersInput>;
-  connect?: Maybe<RoleWhereUniqueInput>;
-}
-
-export interface UserCreateWithoutRoleInput {
-  id?: Maybe<ID_Input>;
-  firstName: String;
-  secondName: String;
-  userName: String;
-  password: String;
-  blocked?: Maybe<Boolean>;
-  lastEntered?: Maybe<DateTimeInput>;
-}
-
-export type UserWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-  userName?: Maybe<String>;
-}>;
-
-export interface RoleUpdateInput {
-  name?: Maybe<String>;
-  users?: Maybe<UserUpdateManyWithoutRoleInput>;
-}
-
 export interface RoleWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
@@ -402,17 +298,75 @@ export interface RoleWhereInput {
   NOT?: Maybe<RoleWhereInput[] | RoleWhereInput>;
 }
 
-export interface RoleUpdateManyMutationInput {
-  name?: Maybe<String>;
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  userName?: Maybe<String>;
+}>;
+
+export interface RoleCreateInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  users?: Maybe<UserCreateManyWithoutRoleInput>;
 }
 
-export interface UserUpdateManyMutationInput {
+export interface UserCreateManyWithoutRoleInput {
+  create?: Maybe<UserCreateWithoutRoleInput[] | UserCreateWithoutRoleInput>;
+  connect?: Maybe<UserWhereUniqueInput[] | UserWhereUniqueInput>;
+}
+
+export interface UserCreateWithoutRoleInput {
+  id?: Maybe<ID_Input>;
+  firstName: String;
+  secondName: String;
+  userName: String;
+  password: String;
+  blocked?: Maybe<Boolean>;
+  lastEntered?: Maybe<DateTimeInput>;
+}
+
+export interface RoleUpdateInput {
+  name?: Maybe<String>;
+  users?: Maybe<UserUpdateManyWithoutRoleInput>;
+}
+
+export interface UserUpdateManyWithoutRoleInput {
+  create?: Maybe<UserCreateWithoutRoleInput[] | UserCreateWithoutRoleInput>;
+  delete?: Maybe<UserWhereUniqueInput[] | UserWhereUniqueInput>;
+  connect?: Maybe<UserWhereUniqueInput[] | UserWhereUniqueInput>;
+  set?: Maybe<UserWhereUniqueInput[] | UserWhereUniqueInput>;
+  disconnect?: Maybe<UserWhereUniqueInput[] | UserWhereUniqueInput>;
+  update?: Maybe<
+    | UserUpdateWithWhereUniqueWithoutRoleInput[]
+    | UserUpdateWithWhereUniqueWithoutRoleInput
+  >;
+  upsert?: Maybe<
+    | UserUpsertWithWhereUniqueWithoutRoleInput[]
+    | UserUpsertWithWhereUniqueWithoutRoleInput
+  >;
+  deleteMany?: Maybe<UserScalarWhereInput[] | UserScalarWhereInput>;
+  updateMany?: Maybe<
+    UserUpdateManyWithWhereNestedInput[] | UserUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface UserUpdateWithWhereUniqueWithoutRoleInput {
+  where: UserWhereUniqueInput;
+  data: UserUpdateWithoutRoleDataInput;
+}
+
+export interface UserUpdateWithoutRoleDataInput {
   firstName?: Maybe<String>;
   secondName?: Maybe<String>;
   userName?: Maybe<String>;
   password?: Maybe<String>;
   blocked?: Maybe<Boolean>;
   lastEntered?: Maybe<DateTimeInput>;
+}
+
+export interface UserUpsertWithWhereUniqueWithoutRoleInput {
+  where: UserWhereUniqueInput;
+  update: UserUpdateWithoutRoleDataInput;
+  create: UserCreateWithoutRoleInput;
 }
 
 export interface UserScalarWhereInput {
@@ -509,10 +463,9 @@ export interface UserScalarWhereInput {
   NOT?: Maybe<UserScalarWhereInput[] | UserScalarWhereInput>;
 }
 
-export interface UserUpsertWithWhereUniqueWithoutRoleInput {
-  where: UserWhereUniqueInput;
-  update: UserUpdateWithoutRoleDataInput;
-  create: UserCreateWithoutRoleInput;
+export interface UserUpdateManyWithWhereNestedInput {
+  where: UserScalarWhereInput;
+  data: UserUpdateManyDataInput;
 }
 
 export interface UserUpdateManyDataInput {
@@ -524,24 +477,24 @@ export interface UserUpdateManyDataInput {
   lastEntered?: Maybe<DateTimeInput>;
 }
 
-export interface UserUpdateWithWhereUniqueWithoutRoleInput {
-  where: UserWhereUniqueInput;
-  data: UserUpdateWithoutRoleDataInput;
-}
-
-export interface RoleUpdateWithoutUsersDataInput {
+export interface RoleUpdateManyMutationInput {
   name?: Maybe<String>;
 }
 
-export interface UserSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<UserWhereInput>;
-  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-  OR?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-  NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+export interface UserCreateInput {
+  id?: Maybe<ID_Input>;
+  firstName: String;
+  secondName: String;
+  userName: String;
+  password: String;
+  blocked?: Maybe<Boolean>;
+  lastEntered?: Maybe<DateTimeInput>;
+  role: RoleCreateOneWithoutUsersInput;
+}
+
+export interface RoleCreateOneWithoutUsersInput {
+  create?: Maybe<RoleCreateWithoutUsersInput>;
+  connect?: Maybe<RoleWhereUniqueInput>;
 }
 
 export interface RoleCreateWithoutUsersInput {
@@ -559,61 +512,55 @@ export interface UserUpdateInput {
   role?: Maybe<RoleUpdateOneRequiredWithoutUsersInput>;
 }
 
+export interface RoleUpdateOneRequiredWithoutUsersInput {
+  create?: Maybe<RoleCreateWithoutUsersInput>;
+  update?: Maybe<RoleUpdateWithoutUsersDataInput>;
+  upsert?: Maybe<RoleUpsertWithoutUsersInput>;
+  connect?: Maybe<RoleWhereUniqueInput>;
+}
+
+export interface RoleUpdateWithoutUsersDataInput {
+  name?: Maybe<String>;
+}
+
+export interface RoleUpsertWithoutUsersInput {
+  update: RoleUpdateWithoutUsersDataInput;
+  create: RoleCreateWithoutUsersInput;
+}
+
+export interface UserUpdateManyMutationInput {
+  firstName?: Maybe<String>;
+  secondName?: Maybe<String>;
+  userName?: Maybe<String>;
+  password?: Maybe<String>;
+  blocked?: Maybe<Boolean>;
+  lastEntered?: Maybe<DateTimeInput>;
+}
+
+export interface RoleSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<RoleWhereInput>;
+  AND?: Maybe<RoleSubscriptionWhereInput[] | RoleSubscriptionWhereInput>;
+  OR?: Maybe<RoleSubscriptionWhereInput[] | RoleSubscriptionWhereInput>;
+  NOT?: Maybe<RoleSubscriptionWhereInput[] | RoleSubscriptionWhereInput>;
+}
+
+export interface UserSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<UserWhereInput>;
+  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  OR?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+}
+
 export interface NodeNode {
   id: ID_Output;
-}
-
-export interface UserPreviousValues {
-  id: ID_Output;
-  firstName: String;
-  secondName: String;
-  userName: String;
-  password: String;
-  blocked: Boolean;
-  createdAt: DateTimeOutput;
-  lastEntered?: DateTimeOutput;
-}
-
-export interface UserPreviousValuesPromise
-  extends Promise<UserPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  firstName: () => Promise<String>;
-  secondName: () => Promise<String>;
-  userName: () => Promise<String>;
-  password: () => Promise<String>;
-  blocked: () => Promise<Boolean>;
-  createdAt: () => Promise<DateTimeOutput>;
-  lastEntered: () => Promise<DateTimeOutput>;
-}
-
-export interface UserPreviousValuesSubscription
-  extends Promise<AsyncIterator<UserPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  firstName: () => Promise<AsyncIterator<String>>;
-  secondName: () => Promise<AsyncIterator<String>>;
-  userName: () => Promise<AsyncIterator<String>>;
-  password: () => Promise<AsyncIterator<String>>;
-  blocked: () => Promise<AsyncIterator<Boolean>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  lastEntered: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface AggregateRole {
-  count: Int;
-}
-
-export interface AggregateRolePromise
-  extends Promise<AggregateRole>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateRoleSubscription
-  extends Promise<AsyncIterator<AggregateRole>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface Role {
@@ -667,71 +614,6 @@ export interface RoleNullablePromise
   }) => T;
 }
 
-export interface RoleEdge {
-  node: Role;
-  cursor: String;
-}
-
-export interface RoleEdgePromise extends Promise<RoleEdge>, Fragmentable {
-  node: <T = RolePromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface RoleEdgeSubscription
-  extends Promise<AsyncIterator<RoleEdge>>,
-    Fragmentable {
-  node: <T = RoleSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface PageInfo {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
-}
-
-export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
-
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>,
-    Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface UserSubscriptionPayload {
-  mutation: MutationType;
-  node: User;
-  updatedFields: String[];
-  previousValues: UserPreviousValues;
-}
-
-export interface UserSubscriptionPayloadPromise
-  extends Promise<UserSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = UserPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = UserPreviousValuesPromise>() => T;
-}
-
-export interface UserSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = UserSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = UserPreviousValuesSubscription>() => T;
-}
-
 export interface User {
   id: ID_Output;
   firstName: String;
@@ -783,31 +665,6 @@ export interface UserNullablePromise
   role: <T = RolePromise>() => T;
 }
 
-export interface RoleSubscriptionPayload {
-  mutation: MutationType;
-  node: Role;
-  updatedFields: String[];
-  previousValues: RolePreviousValues;
-}
-
-export interface RoleSubscriptionPayloadPromise
-  extends Promise<RoleSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = RolePromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = RolePreviousValuesPromise>() => T;
-}
-
-export interface RoleSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<RoleSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = RoleSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = RolePreviousValuesSubscription>() => T;
-}
-
 export interface RoleConnection {
   pageInfo: PageInfo;
   edges: RoleEdge[];
@@ -829,55 +686,60 @@ export interface RoleConnectionSubscription
   aggregate: <T = AggregateRoleSubscription>() => T;
 }
 
-export interface RolePreviousValues {
-  id: ID_Output;
-  name: String;
+export interface PageInfo {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
 }
 
-export interface RolePreviousValuesPromise
-  extends Promise<RolePreviousValues>,
+export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
+}
+
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
     Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface RolePreviousValuesSubscription
-  extends Promise<AsyncIterator<RolePreviousValues>>,
+export interface RoleEdge {
+  node: Role;
+  cursor: String;
+}
+
+export interface RoleEdgePromise extends Promise<RoleEdge>, Fragmentable {
+  node: <T = RolePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface RoleEdgeSubscription
+  extends Promise<AsyncIterator<RoleEdge>>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
+  node: <T = RoleSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregateUser {
+export interface AggregateRole {
   count: Int;
 }
 
-export interface AggregateUserPromise
-  extends Promise<AggregateUser>,
+export interface AggregateRolePromise
+  extends Promise<AggregateRole>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateUserSubscription
-  extends Promise<AsyncIterator<AggregateUser>>,
+export interface AggregateRoleSubscription
+  extends Promise<AsyncIterator<AggregateRole>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface BatchPayload {
-  count: Long;
-}
-
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
-    Fragmentable {
-  count: () => Promise<Long>;
-}
-
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
 }
 
 export interface UserConnection {
@@ -918,6 +780,155 @@ export interface UserEdgeSubscription
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
+export interface AggregateUser {
+  count: Int;
+}
+
+export interface AggregateUserPromise
+  extends Promise<AggregateUser>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUserSubscription
+  extends Promise<AsyncIterator<AggregateUser>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface BatchPayload {
+  count: Long;
+}
+
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
+    Fragmentable {
+  count: () => Promise<Long>;
+}
+
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Long>>;
+}
+
+export interface RoleSubscriptionPayload {
+  mutation: MutationType;
+  node: Role;
+  updatedFields: String[];
+  previousValues: RolePreviousValues;
+}
+
+export interface RoleSubscriptionPayloadPromise
+  extends Promise<RoleSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = RolePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = RolePreviousValuesPromise>() => T;
+}
+
+export interface RoleSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<RoleSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = RoleSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = RolePreviousValuesSubscription>() => T;
+}
+
+export interface RolePreviousValues {
+  id: ID_Output;
+  name: String;
+}
+
+export interface RolePreviousValuesPromise
+  extends Promise<RolePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+}
+
+export interface RolePreviousValuesSubscription
+  extends Promise<AsyncIterator<RolePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+}
+
+export interface UserSubscriptionPayload {
+  mutation: MutationType;
+  node: User;
+  updatedFields: String[];
+  previousValues: UserPreviousValues;
+}
+
+export interface UserSubscriptionPayloadPromise
+  extends Promise<UserSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = UserPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = UserPreviousValuesPromise>() => T;
+}
+
+export interface UserSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = UserSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = UserPreviousValuesSubscription>() => T;
+}
+
+export interface UserPreviousValues {
+  id: ID_Output;
+  firstName: String;
+  secondName: String;
+  userName: String;
+  password: String;
+  blocked: Boolean;
+  createdAt: DateTimeOutput;
+  lastEntered?: DateTimeOutput;
+}
+
+export interface UserPreviousValuesPromise
+  extends Promise<UserPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  firstName: () => Promise<String>;
+  secondName: () => Promise<String>;
+  userName: () => Promise<String>;
+  password: () => Promise<String>;
+  blocked: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  lastEntered: () => Promise<DateTimeOutput>;
+}
+
+export interface UserPreviousValuesSubscription
+  extends Promise<AsyncIterator<UserPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  firstName: () => Promise<AsyncIterator<String>>;
+  secondName: () => Promise<AsyncIterator<String>>;
+  userName: () => Promise<AsyncIterator<String>>;
+  password: () => Promise<AsyncIterator<String>>;
+  blocked: () => Promise<AsyncIterator<Boolean>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  lastEntered: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+/*
+The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
+*/
+export type ID_Input = string | number;
+export type ID_Output = string;
+
+/*
+The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+*/
+export type String = string;
+
 /*
 The `Boolean` scalar type represents `true` or `false`.
 */
@@ -933,23 +944,12 @@ DateTime scalar output type, which is always a string
 */
 export type DateTimeOutput = string;
 
-export type Long = string;
-
 /*
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
 */
 export type Int = number;
 
-/*
-The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
-*/
-export type ID_Input = string | number;
-export type ID_Output = string;
-
-/*
-The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
-*/
-export type String = string;
+export type Long = string;
 
 /**
  * Model Metadata
